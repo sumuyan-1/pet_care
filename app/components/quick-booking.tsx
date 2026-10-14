@@ -34,9 +34,9 @@ const BLANK: Record<Field, string> = {
 };
 
 const LABELS: Record<Field, string> = {
+  time: "预计到店时间",
   name: "联系人",
   phone: "手机号",
-  time: "预计到店时间",
   pet: "宠物类型",
   service: "服务项目",
   note: "备注",
@@ -138,9 +138,9 @@ export default function QuickBooking() {
 
   const summary = [
     "【尾巴日记 · 快速预约】",
+    `预计到店：${formatSlot(values.time)}`,
     `联系人：${values.name.trim()}`,
     `手机号：${values.phone.trim()}`,
-    `预计到店：${formatSlot(values.time)}`,
     `宠物类型：${values.pet}`,
     `服务项目：${values.service}`,
     values.note.trim() ? `备注：${values.note.trim()}` : "",
@@ -214,37 +214,6 @@ export default function QuickBooking() {
         <form className="bd-form" onSubmit={submit} noValidate>
           <div className="bd-grid">
             <label className="bd-field">
-              <span className="bd-label">联系人</span>
-              <input
-                ref={nameRef}
-                name="name"
-                autoComplete="name"
-                placeholder="怎么称呼你"
-                value={values.name}
-                onChange={change("name")}
-                aria-invalid={Boolean(errors.name)}
-              />
-              {errors.name ? <small className="bd-error">{errors.name}</small> : null}
-            </label>
-            <label className="bd-field">
-              <span className="bd-label">手机号</span>
-              <input
-                name="phone"
-                type="tel"
-                inputMode="numeric"
-                autoComplete="tel"
-                maxLength={11}
-                placeholder="11 位手机号"
-                value={values.phone}
-                onChange={change("phone")}
-                aria-invalid={Boolean(errors.phone)}
-              />
-              {errors.phone ? <small className="bd-error">{errors.phone}</small> : null}
-            </label>
-          </div>
-
-          <div className="bd-grid">
-            <label className="bd-field">
               <span className="bd-label">预计到店时间</span>
               <input
                 name="time"
@@ -272,6 +241,37 @@ export default function QuickBooking() {
                 ))}
               </select>
               {errors.pet ? <small className="bd-error">{errors.pet}</small> : null}
+            </label>
+          </div>
+
+          <div className="bd-grid">
+            <label className="bd-field">
+              <span className="bd-label">联系人</span>
+              <input
+                ref={nameRef}
+                name="name"
+                autoComplete="name"
+                placeholder="怎么称呼你"
+                value={values.name}
+                onChange={change("name")}
+                aria-invalid={Boolean(errors.name)}
+              />
+              {errors.name ? <small className="bd-error">{errors.name}</small> : null}
+            </label>
+            <label className="bd-field">
+              <span className="bd-label">手机号</span>
+              <input
+                name="phone"
+                type="tel"
+                inputMode="numeric"
+                autoComplete="tel"
+                maxLength={11}
+                placeholder="11 位手机号"
+                value={values.phone}
+                onChange={change("phone")}
+                aria-invalid={Boolean(errors.phone)}
+              />
+              {errors.phone ? <small className="bd-error">{errors.phone}</small> : null}
             </label>
           </div>
 
